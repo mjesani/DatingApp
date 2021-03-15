@@ -1,25 +1,27 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Dating App</a>
+        <a class="navbar-brand" routerLink="/">Dating App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+            <ul class="navbar-nav mr-auto">
+                <ng-container *ngIf="accountService.currentUser$ | async">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" tabindex="-1" routerLink="/messages" routerLinkActive="active">Messages</a>
+                    </li>
+                </ng-container>
             </ul>
 
-            <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
-                <a class="dropdown-toggle text-light" dropdownToggle>Welcome User</a>
+            <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+                <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username | titlecase}}</a>
                 <div class="dropdown-menu" *dropdownMenu>
                     <a class="dropdown-item">Edit Profile</a>
                     <div class="dropdown-divider"></div>
@@ -33,7 +35,7 @@
                     placeholder="Username" aria-label="Username" spellcheck="false" data-ms-editor="true">
                 <input class="form-control mr-sm-2" type="password" name="password" [(ngModel)]="model.password"
                     placeholder="Password" aria-label="Password" spellcheck="false" data-ms-editor="true">
-                <button class="btn btn-outline-success" type="submit">Login</button>
+                <button class="btn btn-success" type="submit">Login</button>
             </form>
         </div>
     </div>
