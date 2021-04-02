@@ -29,6 +29,7 @@ namespace API.Controllers
 
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MembersDto>>> GetUsers([FromQuery] UserParams userParams)
         {
@@ -52,6 +53,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        //[Authorize(Roles = "Member")]
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MembersDto>> GetUser(string username)
         {
