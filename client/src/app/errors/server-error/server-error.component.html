@@ -1,0 +1,5 @@
+<h4>Internal Server error - Refreshing the page will make the error disappear</h4>
+<ng-container *ngIf="error">
+    <h5 class="text-danger">Error: {{error.message}}</h5>
+    <code>{{error.details}}</code>
+</ng-container>

@@ -1,0 +1,13 @@
+<ng-container>
+    <button class="btn btn-primary mr-2" (click)="get404NotFoundError()">404 Not Found</button>
+    <button class="btn btn-primary mr-2" (click)="get500InternalServerError()">500 Internal Server</button>
+    <button class="btn btn-primary mr-2" (click)="get401UnauthorizedError()">401 Unauthorized</button>
+    <button class="btn btn-primary mr-2" (click)="get400BadRequestError()">400 Bad request</button>
+    <button class="btn btn-primary mr-2" (click)="get400BadRequestValidationError()">400 Bad Request Validation</button>
+
+    <div class="row mt-5" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">{{error}}</li>
+        </ul>
+    </div>
+</ng-container>
